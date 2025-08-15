@@ -28,11 +28,10 @@ export const ThemeProvider = ({ children }: ProviderType) => {
             colorPrimary: '#1890ff',
             colorPrimaryHover: '#40a9ff',
             colorPrimaryActive: '#096dd9',
-            // Стили для type="text"
-            colorText: 'rgba(0, 0, 0, 0.88)',        // обычный текст
-            colorTextDisabled: 'rgba(0, 0, 0, 0.25)', // неактивное состояние
-            colorBgTextHover: '#f5f5f5',             // фон при наведении
-            colorBgTextActive: '#e6f7ff',            // фон при нажатии
+            colorText: 'rgba(0, 0, 0, 0.88)',
+            colorTextDisabled: 'rgba(0, 0, 0, 0.25)',
+            colorBgTextHover: '#f5f5f5',
+            colorBgTextActive: '#e6f7ff',
           },
           Input: {
             colorBgContainer: '#ffffff',
@@ -57,13 +56,15 @@ export const ThemeProvider = ({ children }: ProviderType) => {
             colorBorder: '#d9d9d9',
           },
           Menu: {
-            colorItemBg: '#ffffff',
-            colorItemText: 'rgba(0, 0, 0, 0.88)',
-            colorItemTextSelected: '#1890ff',
-            colorItemBgSelected: '#e6f7ff',
-            colorItemBgHover: '#f5f5f5',
-            colorSubItemBg: '#ffffff',
-            colorActiveBarWidth: 0,
+            itemBg: '#ffffff',                  
+            itemColor: 'rgba(0, 0, 0, 0.88)',   
+            itemSelectedColor: '#1890ff',     
+            itemSelectedBg: '#e6f7ff',        
+            itemHoverBg: '#f5f5f5',       
+            subMenuItemBg: '#ffffff',        
+            activeBarWidth: 0,                 
+            itemActiveBg: '#e6f7ff',
+            itemHoverColor: 'rgba(0, 0, 0, 0.88)',
           }
         },
       }}
