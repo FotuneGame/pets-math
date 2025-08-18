@@ -1,27 +1,20 @@
 import { Schedule } from "@widgets/";
 import { Flex, Card } from "antd";
+import type { FunctionType, AxisType } from "@widgets/schedule/model/types";
 
 export const HomePage = () => {
 
-      // Математические функции для отображения
-  const functions = [
+  // Математические функции для отображения
+  const functions: Array<FunctionType> = [
     {
       name: 'cos(x)',
-      fn: Math.cos,
-      range: [0, 2 * Math.PI] as [number, number],
-      color: "blue",
-    },
-    {
-      name: 'x²',
-      fn: (x: number) => x * x,
-      range: [-2, 2] as [number, number],
-      color: "green",
-    },
-    {
-      name: 'sin(x)',
-      fn: Math.sin,
-      range: [0, 2 * Math.PI] as [number, number],
+      fn: (variables: AxisType) => Math.cos(variables.x), // Используем AxisType
+      ranges: {
+        x: [-2 * Math.PI, 2 * Math.PI] // Диапазон для x
+      },
       color: "red",
+      axesFunc: "x", // Генерируем значения по оси X
+      axesArg: {} // Дополнительные аргументы
     },
   ];
 
