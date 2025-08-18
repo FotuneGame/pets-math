@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 
 export const useZoom = (
   initialZoom: number = 1,
-  minZoom: number = 0.3,
-  maxZoom: number = 5,
+  minZoom: number = 0.1,
+  maxZoom: number = 100,
   zoomStep: number = 0.1
 ) => {
   const [zoom, setZoom] = useState<number>(initialZoom);

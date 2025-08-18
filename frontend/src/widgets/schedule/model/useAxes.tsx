@@ -1,60 +1,55 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { FunctionType } from "./types";
 
-export const useAxes = (zoom = 1, defaultSize = 10) => {
+export const useAxes = (
+  zoom:number = 1,
+  size: number = 10
+) => {
+  
+  const [axes, setAxes] = useState<Array<FunctionType>>([]);
 
-  const [axes, setAxes] = useState<Array<FunctionType>>([
-    {
+  useEffect(() => {
+    const scaledSize = size * zoom;
+
+    const x:FunctionType = {
       name: "x",
-      fn: () => 0, // Горизонтальная линия (y = position[1])
+      fn: () => [0],
       ranges: {
-        x: [-defaultSize, defaultSize], // Диапазон для оси X
+        x: [-scaledSize, scaledSize],
       },
       color: "#000",
       axesFunc: "x",
       axesArg: {},
-      step: defaultSize,
-    },
-    {
+      step: scaledSize,
+    }
+
+    const y:FunctionType = {
       name: "y",
-      fn: () => 0, // Вертикальная линия (x = position[0])
+      fn: () => [0],
       ranges: {
-        y: [-defaultSize, defaultSize], // Диапазон для оси Y
+        y: [-scaledSize, scaledSize],
       },
       color: "#000",
       axesFunc: "y",
       axesArg: {},
-      step: defaultSize,
+      step: scaledSize,
     }
-  ]);
-
-  useEffect(() => {
-    const scaledSize = defaultSize * zoom;
-
-    const newAxes = axes.map(axis => {
-      if (axis.name === "x") {
-        return {
-          ...axis,
-          ranges: {
-            x: [-scaledSize, scaledSize],
-          },
-          step: scaledSize,
-        };
-      } else {
-        return {
-          ...axis,
-          ranges: {
-            y: [-scaledSize, scaledSize],
-          },
-          step: scaledSize,
-        };
-      }
-    });
     
-    setAxes(newAxes);
-  }, [zoom, defaultSize]);
+    setAxes([x,y]);
+  }, [zoom, size]);
+
+
+  const viewFilter = useCallback((values:number, result:number) => {
+    const scaledSize = size * zoom;
+
+    if(-scaledSize <= values && values <=scaledSize)
+      if(-scaledSize <= result && result <=scaledSize)
+        return true;
+    return false;
+  }, [zoom, size]);
 
   return { 
-    axes
+    axes,
+    viewFilter
   };
 };
