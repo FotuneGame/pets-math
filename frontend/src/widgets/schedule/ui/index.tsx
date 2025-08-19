@@ -1,9 +1,9 @@
 import { Line } from '@ant-design/charts';
-import { theme } from 'antd';
+import { Flex, theme } from 'antd';
 import type {SchedulePropsType} from "../model/types";
 import {useFunctionData} from '../model/useFunctionData';
 import { useAxes } from '../model/useAxes';
-import { Zoom, useZoom } from '@features/';
+import { Zoom, useZoom, Board } from '@features/';
 
 
 export const Schedule = ({functions, title, step=0.1, xAxis="x", yAxis="y", height=600}: SchedulePropsType) => {
@@ -39,7 +39,10 @@ export const Schedule = ({functions, title, step=0.1, xAxis="x", yAxis="y", heig
       width: "100%"
     }}>
       <h3 style={{ color: token.colorText }}>{title}</h3>
-      <Zoom zoomIn={zoomIn} zoomOut={zoomOut}/>
+      <Flex gap={10}>
+        <Zoom zoomIn={zoomIn} zoomOut={zoomOut}/>
+        <Board />
+      </Flex>
       <div>
         <Line {...config}/>
       </div>
