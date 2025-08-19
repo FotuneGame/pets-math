@@ -3,8 +3,7 @@ import { theme } from 'antd';
 import type {SchedulePropsType} from "../model/types";
 import {useFunctionData} from '../model/useFunctionData';
 import { useAxes } from '../model/useAxes';
-import { useZoom } from '../model/useZoom';
-import { Zoom } from '@features/';
+import { Zoom, useZoom } from '@features/';
 
 
 export const Schedule = ({functions, title, step=0.1, xAxis="x", yAxis="y", height=600}: SchedulePropsType) => {

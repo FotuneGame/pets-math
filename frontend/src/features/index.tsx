@@ -1,1 +1,1 @@
-export {Zoom} from "./zoom";
+export {Zoom, useZoom} from "./zoom";
