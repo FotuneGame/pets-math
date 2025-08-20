@@ -1,4 +1,9 @@
 export type BoardPropsType = {
-    value: string,
-    setValue: React.Dispatch<React.SetStateAction<string>>
+    add: (value: string) => void
+}
+
+export type BoardType = {
+    name: string,
+    title: string,
+    keyboardRows: Array<Array<string>>
 }

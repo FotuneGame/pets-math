@@ -4,21 +4,19 @@ import { useState } from 'react';
 
 
 
-export const useDrawer = () => {
-    const [value, setValue] = useState<string>("");
-
+export const useDrawer = (add: (value:string)=> void) => {
     const items: TabsProps['items'] = [
         {
             key: '1',
             label: 'calc',
-            children: <Board value={value} onChange={setValue}/>,
+            children: <Board add={add}/>,
         },
         {
             key: '2',
             label: 'functions',
-            children: <Board value={value} onChange={setValue}/>,
+            children: <Board add={add}/>,
         },
     ];
 
-    return {items, value}
+    return {items}
 }

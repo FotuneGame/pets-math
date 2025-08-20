@@ -1,43 +1,37 @@
-import { Flex, Input, Row, Col, Button  } from "antd";
+import { Button, Flex, Input, Tabs  } from "antd";
 import type { BoardPropsType } from "../model/types";
+import { PlusCircleOutlined, ClearOutlined } from "@ant-design/icons";
+import { useTabs } from "../model/useTabs";
+import { boards } from "../model/model";
+import { useState } from "react";
 
 
 
-export const Board = ({value, setValue}:BoardPropsType) => {
-
-
+export const Board = ({add}:BoardPropsType) => {
+    const [value, setValue] = useState<string>("");
     const clear = () => setValue('');
     const click = (char: string) => setValue(prev => prev + char);
+    const {items} = useTabs(click, boards);
 
-    const keyboardRows = [
-        ['7', '8', '9', '(', ')', 'π', '∞'],
-        ['4', '5', '6', '+', '-', '×', '÷'],
-        ['1', '2', '3', 'x', 'y', 'z', '^'],
-        ['0', '.', '=', '<', '>', '≤', '≥'],
-        ['sin', 'cos', 'tan', '√', '∫', '∑', '∏']
-    ];
 
     return (
         <Flex vertical gap={16}>
-            <Input 
-                value={value}
-                onChange={(e)=>setValue(e.target.value)}
-                placeholder="y=ax+b"
-            />
-            { 
-            keyboardRows.map(row => (
-                <Row>
-                    {
-                    row.map((char=>(
-                        <Col>
-                            <Button onClick={()=>click(char)}>{char}</Button>
-                        </Col>
-                    )))
-                    }
-                </Row>
-            ))
-            }
-            
+            <Flex gap={1}>
+                <Button size="large" icon={<ClearOutlined />} onClick={clear}/>
+                <Input 
+                    size="large"
+                    value={value}
+                    onChange={(e)=>setValue(e.target.value)}
+                    placeholder="y=ax+b"
+                />
+                <Button size="large" icon={<PlusCircleOutlined />} onClick={()=>add(value)}/>
+            </Flex>
+            <Flex>
+                <Tabs 
+                    style={{width: "100%"}} 
+                    items={items}
+                />
+            </Flex>
 
         </Flex>
     )

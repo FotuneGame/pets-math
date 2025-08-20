@@ -13,7 +13,12 @@ export const Schedule = ({functions, title, step=0.1, xAxis="x", yAxis="y", heig
   const {zoom, zoomIn, zoomOut} = useZoom();
   const {axes, viewFilter} = useAxes(zoom);
   const {data} = useFunctionData([...axes, ...functions], viewFilter, step,  xAxis, yAxis);
-  const {items, value} = useDrawer();
+
+  const add = (value:string) => {
+
+  }
+
+  const {items} = useDrawer(add);
 
 
   const config = {

@@ -17,7 +17,7 @@ export const Drawer = ({items}: DrawerPropsType) => {
                 onClose={()=>setOpen(false)}
                 open={open}
             >
-                <Tabs defaultActiveKey="1" items={items}/> 
+                <Tabs items={items}/> 
             </DrawerAntd>
         </Flex>
     )
