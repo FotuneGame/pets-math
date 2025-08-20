@@ -1,2 +1,2 @@
 export {Zoom, useZoom} from "./zoom";
-export {Board} from "./board";
+export {Drawer} from "./drawer";

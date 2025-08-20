@@ -3,7 +3,9 @@ import { Flex, theme } from 'antd';
 import type {SchedulePropsType} from "../model/types";
 import {useFunctionData} from '../model/useFunctionData';
 import { useAxes } from '../model/useAxes';
-import { Zoom, useZoom, Board } from '@features/';
+import { Zoom, useZoom, Drawer } from '@features/';
+import { useDrawer } from '../model/useDrawer';
+
 
 
 export const Schedule = ({functions, title, step=0.1, xAxis="x", yAxis="y", height=600}: SchedulePropsType) => {
@@ -11,6 +13,7 @@ export const Schedule = ({functions, title, step=0.1, xAxis="x", yAxis="y", heig
   const {zoom, zoomIn, zoomOut} = useZoom();
   const {axes, viewFilter} = useAxes(zoom);
   const {data} = useFunctionData([...axes, ...functions], viewFilter, step,  xAxis, yAxis);
+  const {items, value} = useDrawer();
 
 
   const config = {
@@ -41,7 +44,7 @@ export const Schedule = ({functions, title, step=0.1, xAxis="x", yAxis="y", heig
       <h3 style={{ color: token.colorText }}>{title}</h3>
       <Flex gap={10}>
         <Zoom zoomIn={zoomIn} zoomOut={zoomOut}/>
-        <Board />
+        <Drawer items={items}/>
       </Flex>
       <div>
         <Line {...config}/>
