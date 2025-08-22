@@ -146,7 +146,7 @@ export const HomePage = () => {
   return(
       <Flex style={{width:"100%"}} justify="center">
           <Card style={{ width: '100%' }}>
-              <Schedule functions={functions} step={0.1} title={"Test"}/>
+              <Schedule defaultFunctions={functions} step={0.1} title={"Test"}/>
           </Card>
       </Flex>
   )

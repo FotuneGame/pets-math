@@ -1,24 +1,19 @@
 import { Line } from '@ant-design/charts';
 import { Flex, theme } from 'antd';
-import type {SchedulePropsType} from "../model/types";
+import type {SchedulePropsType, FunctionType} from "../model/types";
 import {useFunctionData} from '../model/useFunctionData';
 import { useAxes } from '../model/useAxes';
-import { Zoom, useZoom, Drawer } from '@features/';
-import { useDrawer } from '../model/useDrawer';
+import { Zoom, useZoom, Drawer, Functions } from '@features/';
+import { useList } from '../../../shared/hooks/useList';
 
 
 
-export const Schedule = ({functions, title, step=0.1, xAxis="x", yAxis="y", height=600}: SchedulePropsType) => {
+export const Schedule = ({title, defaultFunctions=[], step=0.1, xAxis="x", yAxis="y", height=600}: SchedulePropsType) => {
+  const {list: functions, add, remove, update, clear} = useList<FunctionType>(defaultFunctions);
   const { token } = theme.useToken();
   const {zoom, zoomIn, zoomOut} = useZoom();
   const {axes, viewFilter} = useAxes(zoom);
   const {data} = useFunctionData([...axes, ...functions], viewFilter, step,  xAxis, yAxis);
-
-  const add = (value:string) => {
-
-  }
-
-  const {items} = useDrawer(add);
 
 
   const config = {
@@ -39,6 +34,8 @@ export const Schedule = ({functions, title, step=0.1, xAxis="x", yAxis="y", heig
     height: height,
   };
 
+
+
   return (
     <div style={{ 
       background: token.colorBgContainer,
@@ -49,7 +46,19 @@ export const Schedule = ({functions, title, step=0.1, xAxis="x", yAxis="y", heig
       <h3 style={{ color: token.colorText }}>{title}</h3>
       <Flex gap={10}>
         <Zoom zoomIn={zoomIn} zoomOut={zoomOut}/>
-        <Drawer items={items}/>
+        <Drawer items={[
+          {
+            key: 'Functions',
+            label: 'Функции',
+            children: <Functions 
+              functions={functions}
+              add={add}
+              remove={remove}
+              update={update}
+              clear={clear}
+            />,
+          }
+        ]}/>
       </Flex>
       <div>
         <Line {...config}/>

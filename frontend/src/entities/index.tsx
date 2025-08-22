@@ -1,1 +1,2 @@
-export {Board} from "./board";
+export {Function} from "./function";
+export type {AxisType, FunctionType} from "./function";
