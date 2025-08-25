@@ -1,42 +1,50 @@
 import { useCallback, useEffect, useState } from "react";
-import type { FunctionType } from "./types";
+import type { FunctionType } from "../../../widgets/schedule/model/types";
 
 export const useAxes = (
+  defaultXAxis: string, 
+  defaultYAxis: string,
   zoom:number = 1,
   size: number = 10
 ) => {
   
+  const [xAxis, setXAxis] = useState<string>(defaultXAxis);
+  const [yAxis, setYAxis] = useState<string>(defaultYAxis);
   const [axes, setAxes] = useState<Array<FunctionType>>([]);
 
   useEffect(() => {
     const scaledSize = size * zoom;
 
     const x:FunctionType = {
-      name: "x",
+      name: xAxis,
       fn: () => [0],
       ranges: {
         x: [-scaledSize, scaledSize],
+        y: [-scaledSize, scaledSize],
       },
       color: "#000",
-      axesFunc: "x",
+      axesFunc: yAxis,
+      axesCount: [xAxis],
       axesArg: {},
       step: scaledSize,
     }
 
     const y:FunctionType = {
-      name: "y",
+      name: yAxis,
       fn: () => [0],
       ranges: {
+        x: [-scaledSize, scaledSize],
         y: [-scaledSize, scaledSize],
       },
       color: "#000",
-      axesFunc: "y",
+      axesFunc: xAxis,
+      axesCount: [yAxis],
       axesArg: {},
       step: scaledSize,
     }
     
     setAxes([x,y]);
-  }, [zoom, size]);
+  }, [xAxis, yAxis, zoom, size]);
 
 
   const viewFilter = useCallback((values:number, result:number) => {
@@ -50,6 +58,8 @@ export const useAxes = (
 
   return { 
     axes,
-    viewFilter
+    viewFilter,
+    x: [xAxis, setXAxis],
+    y: [yAxis, setYAxis]
   };
 };

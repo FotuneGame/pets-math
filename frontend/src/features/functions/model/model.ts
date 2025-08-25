@@ -4,10 +4,12 @@ export const defaultFunction:FunctionType = {
     name: "y=x",
     fn: async (variables: AxisType) => [variables.x],
     ranges: {
-    x: [-10, 10]
+        y: [-10, 10],
+        x: [-10, 10]
     },
     color: "blue",
-    axesFunc: "x",
+    axesFunc: "y",
+    axesCount: ["x"],
     axesArg: {},
     step: 0.2
 }

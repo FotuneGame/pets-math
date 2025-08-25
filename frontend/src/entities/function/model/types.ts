@@ -9,9 +9,10 @@ export type FunctionType = {
   },
   color: string,
   axesFunc: keyof AxisType,        // Какую переменную использовать как ось функции,
+  axesCount: [keyof AxisType],     //какие переменные динамически подставлят в функцию с шагом step
   axesArg: Partial<AxisType>,      // Фиксированные значения
   step?: number,                   // шаг рендера
-  circle?: number                   // Зацикливание в круг по часовой стрелке кол-во кругов
+  circle?: number                  // Зацикливание в круг по часовой стрелке кол-во кругов
 };
 
 export type FunctionPropsType = {

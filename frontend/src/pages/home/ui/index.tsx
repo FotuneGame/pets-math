@@ -12,10 +12,12 @@ export const HomePage = () => {
       name: 'cos(x)',
       fn: async (variables: AxisType) => [Math.cos(variables.x)],
       ranges: {
+        y: [-10 * Math.PI, 10 * Math.PI],
         x: [-10 * Math.PI, 10 * Math.PI]
       },
       color: "red",
-      axesFunc: "x",
+      axesFunc: "y",
+      axesCount: ["x"],
       axesArg: {},
       step: 0.5
     },
@@ -23,10 +25,12 @@ export const HomePage = () => {
       name: 'sin(x)',
       fn: async (variables: AxisType) => [Math.sin(variables.x)],
       ranges: {
+        y: [-8 * Math.PI, 8 * Math.PI],
         x: [-8 * Math.PI, 8 * Math.PI]
       },
       color: "blue",
-      axesFunc: "x",
+      axesFunc: "y",
+      axesCount: ["x"],
       axesArg: {},
       step: 0.3
     },
@@ -34,10 +38,12 @@ export const HomePage = () => {
       name: 'x^2',
       fn: async (variables: AxisType) => [Math.pow(variables.x, 2)],
       ranges: {
+        y: [-5, 5],
         x: [-5, 5]
       },
       color: "green",
-      axesFunc: "x",
+      axesFunc: "y",
+      axesCount: ["x"],
       axesArg: {},
       step: 0.2
     },
@@ -45,10 +51,12 @@ export const HomePage = () => {
       name: 'sqrt(|x|)',
       fn: async (variables: AxisType) => [Math.sqrt(Math.abs(variables.x))],
       ranges: {
+        y: [-10, 10],
         x: [-10, 10]
       },
       color: "purple",
-      axesFunc: "x",
+      axesFunc: "y",
+      axesCount: ["x"],
       axesArg: {},
       step: 0.25
     },
@@ -56,10 +64,12 @@ export const HomePage = () => {
       name: 'e^x',
       fn: async (variables: AxisType) => [Math.exp(variables.x)],
       ranges: {
+        y: [-3, 3],
         x: [-3, 3]
       },
       color: "orange",
-      axesFunc: "x",
+      axesFunc: "y",
+      axesCount: ["x"],
       axesArg: {},
       step: 0.1
     },
@@ -67,10 +77,12 @@ export const HomePage = () => {
       name: '1/x',
       fn: async (variables: AxisType) => [1 / variables.x],
       ranges: {
+        y: [-5, 5],
         x: [-5, 5]
       },
       color: "cyan",
-      axesFunc: "x",
+      axesFunc: "y",
+      axesCount: ["x"],
       axesArg: {},
       step: 0.01
     },
@@ -78,21 +90,25 @@ export const HomePage = () => {
       name: 'tan(x)',
       fn: async (variables: AxisType) => [Math.tan(variables.x)],
       ranges: {
+        y: [-Math.PI/2 + 0.1, Math.PI/2 - 0.1],
         x: [-Math.PI/2 + 0.1, Math.PI/2 - 0.1] // Избегаем асимптоты
       },
       color: "magenta",
-      axesFunc: "x",
+      axesFunc: "y",
       axesArg: {},
+      axesCount: ["x"],
       step: 0.05
     },
     {
       name: '-sqrt(x)',
       fn: async (variables: AxisType) => [-Math.sqrt(variables.x)],
       ranges: {
+        y: [-1, 5],
         x: [-1, 5]
       },
       color: "#ddd123",
-      axesFunc: "x",
+      axesFunc: "y",
+      axesCount: ["x"],
       axesArg: {},
       step: 0.1
     },
@@ -100,10 +116,12 @@ export const HomePage = () => {
       name: 'x^3 - 2x',
       fn: async (variables: AxisType) => [Math.pow(variables.x, 3) - 2 * variables.x],
       ranges: {
+        y: [-3, 3],
         x: [-3, 3]
       },
       color: "brown",
-      axesFunc: "x",
+      axesFunc: "y",
+      axesCount: ["x"],
       axesArg: {},
       step: 0.1
     },
@@ -116,9 +134,14 @@ export const HomePage = () => {
         const term = r*r - x*x;
         return term >= 0 ? [Math.sqrt(term), -Math.sqrt(term)] : [0, 0];
       },
-      ranges: { x: [-3, 3] },
+      ranges: { 
+        y: [-3, 3],
+        x: [-3, 3],
+        r: [-3, 3]
+      },
       color: "#ff00aa",
-      axesFunc: "x",
+      axesFunc: "y",
+      axesCount: ["x"],
       axesArg: { r: 2 },
       step: 0.05,
       circle: 1
@@ -131,9 +154,17 @@ export const HomePage = () => {
         const term = 1 - Math.pow((x - h)/a, 2);
         return term >= 0 ? [k + b * Math.sqrt(term), k - b * Math.sqrt(term)] : [0, 0];
       },
-      ranges: { x: [-5, 5]  },
+      ranges: { 
+        y: [-5, 5],
+        x: [-5, 5],
+        a: [-5, 5],
+        b: [-5, 5],
+        h: [-5, 5],
+        k: [-5, 5]
+      },
       color: "#00aa88",
-      axesFunc: "x",
+      axesFunc: "y",
+      axesCount: ["x"],
       axesArg: { 
         a: 3,  // полуось по X
         b: 1.5, // полуось по Y
