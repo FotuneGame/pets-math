@@ -19,8 +19,8 @@ export const useAxes = (
       name: xAxis,
       fn: () => [0],
       ranges: {
-        x: [-scaledSize, scaledSize],
-        y: [-scaledSize, scaledSize],
+        [xAxis]: [-scaledSize, scaledSize],
+        [yAxis]: [-scaledSize, scaledSize],
       },
       color: "#000",
       axesFunc: yAxis,
@@ -33,8 +33,8 @@ export const useAxes = (
       name: yAxis,
       fn: () => [0],
       ranges: {
-        x: [-scaledSize, scaledSize],
-        y: [-scaledSize, scaledSize],
+        [xAxis]: [-scaledSize, scaledSize],
+        [yAxis]: [-scaledSize, scaledSize],
       },
       color: "#000",
       axesFunc: xAxis,
@@ -42,7 +42,7 @@ export const useAxes = (
       axesArg: {},
       step: scaledSize,
     }
-    
+
     setAxes([x,y]);
   }, [xAxis, yAxis, zoom, size]);
 

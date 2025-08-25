@@ -44,7 +44,7 @@ export const useFunctionData = (
   
         if(mainAxisKey!==xAxis && mainAxisKey!==yAxis || resAxisKey!==xAxis && resAxisKey !==yAxis)
           continue;
-     
+        
         const [start, end] = func.ranges[mainAxisKey] || [0, 0];
         const step = func.step || defaultStep;
         const fixed = step.toString().split(".")?.[1]?.length ?? 0;
@@ -54,10 +54,13 @@ export const useFunctionData = (
           // Положительная полуокружность
           for (let ri = 0; ri < func.circle * 2; ri += 2) {
             for (let val = start; val <= end; val += step) {
-              const variables = { ...func.axesArg, [mainAxisKey]: val } as AxisType;
+              let variables = { ...func.axesArg } as AxisType;
+              for(let v of func.axesCount){
+                variables[v]= val;
+              }
               const value = variables[mainAxisKey];
               const results = await func.fn(variables);
-
+              
               if (!valid(data, value, results[ri], func.name) || !results[ri]) continue;
               
               if (resAxisKey === yAxis) {
@@ -79,10 +82,14 @@ export const useFunctionData = (
           // Отрицательная полуокружность
           for (let ri = 1; ri < func.circle * 2; ri += 2) {
             for (let val = end; val >= start; val -= step) {
-              const variables = { ...func.axesArg, [mainAxisKey]: val } as AxisType;
+              const variables = { ...func.axesArg } as AxisType;
+              for(let v of func.axesCount){
+                variables[v]= val;
+              }
+             
               const value = variables[mainAxisKey];
               const results = await func.fn(variables);
-              
+             
               if (!valid(data, value, results[ri], func.name) || !results[ri]) continue;
               
               if (resAxisKey === yAxis) {
@@ -107,7 +114,10 @@ export const useFunctionData = (
         } else {
           // Стандартная обработка
           for (let val = start; val <= end; val += step) {
-            const variables = { ...func.axesArg, [mainAxisKey]: val } as AxisType;
+            const variables = { ...func.axesArg } as AxisType;
+            for(let v of func.axesCount){
+              variables[v]= val;
+            }
             const value = variables[mainAxisKey];
             const results = await func.fn(variables);
 
