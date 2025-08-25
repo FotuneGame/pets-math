@@ -3,7 +3,7 @@ export type AxisType = Record<string, number>
 
 export type FunctionType = {
   name: string,
-  fn: (variables: AxisType) => Array<number>,    // Функция принимает объект с переменными
+  fn: (variables: AxisType) => Promise<Array<number>>,    // Функция принимает объект с переменными
   ranges: {                        // Диапазоны для каждой переменной
       [K in keyof AxisType]: [number, number]
   },

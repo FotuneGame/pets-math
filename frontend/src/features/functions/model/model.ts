@@ -2,7 +2,7 @@ import type { FunctionType, AxisType } from "./types";
 
 export const defaultFunction:FunctionType = {
     name: "y=x",
-    fn: (variables: AxisType) => [variables.x],
+    fn: async (variables: AxisType) => [variables.x],
     ranges: {
     x: [-10, 10]
     },

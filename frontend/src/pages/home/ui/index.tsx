@@ -2,13 +2,15 @@ import { Schedule } from "@widgets/";
 import { Flex, Card } from "antd";
 import type { FunctionType, AxisType } from "@widgets/schedule/model/types";
 
+
+
 export const HomePage = () => {
 
   // Математические функции для отображения
   const functions: Array<FunctionType> = [
     {
       name: 'cos(x)',
-      fn: (variables: AxisType) => [Math.cos(variables.x)],
+      fn: async (variables: AxisType) => [Math.cos(variables.x)],
       ranges: {
         x: [-10 * Math.PI, 10 * Math.PI]
       },
@@ -19,7 +21,7 @@ export const HomePage = () => {
     },
     {
       name: 'sin(x)',
-      fn: (variables: AxisType) => [Math.sin(variables.x)],
+      fn: async (variables: AxisType) => [Math.sin(variables.x)],
       ranges: {
         x: [-8 * Math.PI, 8 * Math.PI]
       },
@@ -30,7 +32,7 @@ export const HomePage = () => {
     },
     {
       name: 'x^2',
-      fn: (variables: AxisType) => [Math.pow(variables.x, 2)],
+      fn: async (variables: AxisType) => [Math.pow(variables.x, 2)],
       ranges: {
         x: [-5, 5]
       },
@@ -41,7 +43,7 @@ export const HomePage = () => {
     },
     {
       name: 'sqrt(|x|)',
-      fn: (variables: AxisType) => [Math.sqrt(Math.abs(variables.x))],
+      fn: async (variables: AxisType) => [Math.sqrt(Math.abs(variables.x))],
       ranges: {
         x: [-10, 10]
       },
@@ -52,7 +54,7 @@ export const HomePage = () => {
     },
     {
       name: 'e^x',
-      fn: (variables: AxisType) => [Math.exp(variables.x)],
+      fn: async (variables: AxisType) => [Math.exp(variables.x)],
       ranges: {
         x: [-3, 3]
       },
@@ -63,7 +65,7 @@ export const HomePage = () => {
     },
     {
       name: '1/x',
-      fn: (variables: AxisType) => [1 / variables.x],
+      fn: async (variables: AxisType) => [1 / variables.x],
       ranges: {
         x: [-5, 5]
       },
@@ -74,7 +76,7 @@ export const HomePage = () => {
     },
     {
       name: 'tan(x)',
-      fn: (variables: AxisType) => [Math.tan(variables.x)],
+      fn: async (variables: AxisType) => [Math.tan(variables.x)],
       ranges: {
         x: [-Math.PI/2 + 0.1, Math.PI/2 - 0.1] // Избегаем асимптоты
       },
@@ -85,7 +87,7 @@ export const HomePage = () => {
     },
     {
       name: '-sqrt(x)',
-      fn: (variables: AxisType) => [-Math.sqrt(variables.x)],
+      fn: async (variables: AxisType) => [-Math.sqrt(variables.x)],
       ranges: {
         x: [-1, 5]
       },
@@ -96,7 +98,7 @@ export const HomePage = () => {
     },
     {
       name: 'x^3 - 2x',
-      fn: (variables: AxisType) => [Math.pow(variables.x, 3) - 2 * variables.x],
+      fn: async (variables: AxisType) => [Math.pow(variables.x, 3) - 2 * variables.x],
       ranges: {
         x: [-3, 3]
       },
@@ -108,7 +110,7 @@ export const HomePage = () => {
     {
       //вариант грамотного отображения это доп функция для вверха и низа
       name: 'Circle (y = √(r² - x²))',
-      fn: (variables: AxisType) => {
+      fn: async (variables: AxisType) => {
         const r = variables.r;
         const x = variables.x;
         const term = r*r - x*x;
@@ -123,7 +125,7 @@ export const HomePage = () => {
     },
     {
       name: 'Ellipse (y = b√(1 - x²/a²))',
-      fn: (variables: AxisType) => {
+      fn: async (variables: AxisType) => {
         const { a, b, h, k } = variables;
         const x = variables.x;
         const term = 1 - Math.pow((x - h)/a, 2);
