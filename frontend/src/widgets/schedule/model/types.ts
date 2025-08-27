@@ -3,7 +3,8 @@ export type {AxisType, FunctionType} from "@entities/";
 export type FunctionDataItemType= {
   values: number;
   result: number;
-  functionName: string;
+  id: number;
+  color: string;
 };
 
 export type SchedulePropsType = {

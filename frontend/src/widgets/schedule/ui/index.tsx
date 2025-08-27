@@ -14,12 +14,11 @@ export const Schedule = ({title, defaultFunctions=[], step=0.1, xAxis="x", yAxis
   const {axes, viewFilter, x, y} = useAxes(xAxis, yAxis, zoom);
   const {data} = useFunctionData([...axes, ...functions], viewFilter, step,  x[0], y[0]);
 
-
   const config = {
     data,
     xField: "values",
     yField: "result",
-    seriesField: 'functionName',
+    seriesField: 'id',
     legend: { size: false },
     axis: { x: { title: x[0], size: 60 }, y: { title: y[0], size: 60 } },
     slider: {
@@ -29,7 +28,12 @@ export const Schedule = ({title, defaultFunctions=[], step=0.1, xAxis="x", yAxis
     connectNulls: {
       connect: false,
     },
-    colorField: "functionName",
+    scale: {
+      color: {
+        type: "identity"
+      }
+    },
+    colorField: 'color',
     height: height,
   };
 

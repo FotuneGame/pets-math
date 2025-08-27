@@ -1,5 +1,5 @@
 import type { FunctionsPropsType, FunctionType } from "../model/types";
-import { Function } from "@entities/";
+import { FunctionFrom } from "@entities/";
 import { Collapse, Flex, Button} from 'antd';
 import { PlusOutlined, ClearOutlined } from "@ant-design/icons";
 import { defaultFunction } from "../model/model";
@@ -19,7 +19,7 @@ export const Functions = ({functions, add, remove, update, clear}: FunctionsProp
                     functions.map((func, i)=>({
                         key: func.name+"_"+i,
                         label: func.name,
-                        children: <Function 
+                        children: <FunctionFrom 
                             func={func} 
                             update={(func:FunctionType)=>update(i,func)}
                             remove={()=>remove(i)}

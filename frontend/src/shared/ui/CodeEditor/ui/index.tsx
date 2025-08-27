@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { Card, Button, Space, App } from 'antd';
-import { CopyOutlined, CheckOutlined, PlayCircleOutlined } from '@ant-design/icons';
+import { CopyOutlined, CheckOutlined } from '@ant-design/icons';
 import Editor from '@monaco-editor/react';
 import type { CodeEditorPropsType } from '../model/types';
 
 
 
-export const CodeEditor = ({ defaultCode, apply, title, language='javascript', ...props }: CodeEditorPropsType) => {
-  const [code, setCode] = useState(defaultCode);
+export const CodeEditor = ({ defaultCode, code, setCode, language='javascript', title, ...props }: CodeEditorPropsType) => {
   const [isCopied, setIsCopied] = useState(false);
   const { message } = App.useApp();
 
@@ -27,19 +26,6 @@ export const CodeEditor = ({ defaultCode, apply, title, language='javascript', .
     }
   };
 
-  const handleRunCodeSafe = () => {
-    try {
-      const func = new Function(`return ${code}`);
-      apply(func());
-      message.success('Код готов');
-    } catch (error) {
-      if(error instanceof Error)
-        message.error(`Ошибка выполнения: ${error.message}`);
-      else
-        message.error(`Ошибка выполнения`);
-    }
-  };
-
   return (
     <Card 
       title={title}
@@ -48,10 +34,6 @@ export const CodeEditor = ({ defaultCode, apply, title, language='javascript', .
           <Button 
             icon={isCopied ? <CheckOutlined /> : <CopyOutlined />}
             onClick={handleCopyCode}
-          />
-          <Button 
-            icon={<PlayCircleOutlined />}
-            onClick={handleRunCodeSafe}
           />
         </Space>
       }
