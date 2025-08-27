@@ -1,5 +1,5 @@
 import type { ProviderType } from "@shared/types/provider";
-import { ConfigProvider } from 'antd';
+import { App, ConfigProvider } from 'antd';
 
 export const ThemeProvider = ({ children }: ProviderType) => {
   return (
@@ -69,7 +69,9 @@ export const ThemeProvider = ({ children }: ProviderType) => {
         },
       }}
     >
-      {children}
+      <App>
+        {children}
+      </App>
     </ConfigProvider>
   );
 };

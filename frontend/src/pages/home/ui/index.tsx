@@ -15,7 +15,7 @@ export const HomePage = () => {
         y: [-10 * Math.PI, 10 * Math.PI],
         x: [-10 * Math.PI, 10 * Math.PI]
       },
-      color: "red",
+      color: "#ff1231",
       axesFunc: "y",
       axesCount: ["x"],
       axesArg: {},
@@ -28,7 +28,7 @@ export const HomePage = () => {
         y: [-8 * Math.PI, 8 * Math.PI],
         x: [-8 * Math.PI, 8 * Math.PI]
       },
-      color: "blue",
+      color: "#6112ffff",
       axesFunc: "y",
       axesCount: ["x"],
       axesArg: {},
@@ -41,7 +41,7 @@ export const HomePage = () => {
         y: [-5, 5],
         x: [-5, 5]
       },
-      color: "green",
+      color: "#59ff12ff",
       axesFunc: "y",
       axesCount: ["x"],
       axesArg: {},
@@ -54,7 +54,7 @@ export const HomePage = () => {
         y: [-10, 10],
         x: [-10, 10]
       },
-      color: "purple",
+      color: "#ff12b4ff",
       axesFunc: "y",
       axesCount: ["x"],
       axesArg: {},
@@ -67,7 +67,7 @@ export const HomePage = () => {
         y: [-3, 3],
         x: [-3, 3]
       },
-      color: "orange",
+      color: "#ff9412ff",
       axesFunc: "y",
       axesCount: ["x"],
       axesArg: {},
@@ -80,7 +80,7 @@ export const HomePage = () => {
         y: [-5, 5],
         x: [-5, 5]
       },
-      color: "cyan",
+      color: "#49ff12ff",
       axesFunc: "y",
       axesCount: ["x"],
       axesArg: {},
@@ -93,7 +93,7 @@ export const HomePage = () => {
         y: [-Math.PI/2 + 0.1, Math.PI/2 - 0.1],
         x: [-Math.PI/2 + 0.1, Math.PI/2 - 0.1] // Избегаем асимптоты
       },
-      color: "magenta",
+      color: "#ff7487ff",
       axesFunc: "y",
       axesArg: {},
       axesCount: ["x"],
@@ -119,7 +119,7 @@ export const HomePage = () => {
         y: [-3, 3],
         x: [-3, 3]
       },
-      color: "brown",
+      color: "#8a4300ff",
       axesFunc: "y",
       axesCount: ["x"],
       axesArg: {},

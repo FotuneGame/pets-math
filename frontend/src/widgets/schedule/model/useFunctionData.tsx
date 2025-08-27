@@ -12,7 +12,7 @@ export const useFunctionData = (
   const [isLoading, setIsLoading] = useState(false);
   
   // Используем useRef для отслеживания предыдущих значений
-  const prevFunctionsRef = useRef<FunctionType[]>(functions);
+  const prevFunctionsJSONRef = useRef<string>(JSON.stringify(functions));
   const prevStepRef = useRef(step);
   const prevViewFilterRef = useRef(viewFilter);
   const prevXAxisRef = useRef(xAxis);
@@ -151,7 +151,7 @@ export const useFunctionData = (
   // Мемоизируем основную функцию
   const run = useCallback(async () => {
     // Проверяем, изменились ли зависимости
-    const functionsChanged = JSON.stringify(functions) !== JSON.stringify(prevFunctionsRef.current);
+    const functionsChanged = JSON.stringify(functions.map((func)=>({...func, fn: func.fn.toString()}))) !== prevFunctionsJSONRef.current;
     const stepChanged = step !== prevStepRef.current;
     const viewFilterChanged = viewFilter !== prevViewFilterRef.current;
     const xAxisChanged = xAxis !== prevXAxisRef.current;
@@ -169,7 +169,7 @@ export const useFunctionData = (
       setData(newData);
       
       // Обновляем ссылки на предыдущие значения
-      prevFunctionsRef.current = functions;
+      prevFunctionsJSONRef.current = JSON.stringify(functions.map((func)=>({...func, fn: func.fn.toString()})));
       prevStepRef.current = step;
       prevViewFilterRef.current = viewFilter;
       prevXAxisRef.current = xAxis;

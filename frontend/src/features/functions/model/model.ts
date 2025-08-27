@@ -7,7 +7,7 @@ export const defaultFunction:FunctionType = {
         y: [-10, 10],
         x: [-10, 10]
     },
-    color: "blue",
+    color: "#000000",
     axesFunc: "y",
     axesCount: ["x"],
     axesArg: {},
